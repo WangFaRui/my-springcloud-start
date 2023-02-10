@@ -1,5 +1,6 @@
 package com.wfr.springcloud.gateway.routes;
 
+import com.wfr.springcloud.gateway.filter.RequestTimeFilter;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
@@ -38,6 +39,7 @@ public class GlobalRouteLocator {
                                 .hystrix(config -> config
                                         .setName("mycmd")
                                         .setFallbackUri("forward:/fallback"))
+                                .filter(new RequestTimeFilter())
                         )
                         .uri(HTTP_URI)
                 ).build();

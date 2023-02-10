@@ -20,6 +20,7 @@ spring:
             - Path=/server/**
           filters:
             - StripPrefix=1
+            - RequestTime=false
         - id: client
           uri: lb://client
 #          多个规则时，默认是and并集条件
